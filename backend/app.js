@@ -139,7 +139,20 @@ app.get("/free-endpoint", (request, response) => {
 
 // authentication endpoint
 app.get("/user", auth, (request, response) => {
-  response.send({ message: "You are authorized to access me" });
+ //display info about logged in user 
+  
+   User.findOne({ email: request.userEmail, _id: request.userId })
+    .then(() => {
+      response.status(200).send({
+        message: "User fetched successfully",
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error fetching user",
+        error,
+      });
+    });
 });
 
 module.exports = app;
