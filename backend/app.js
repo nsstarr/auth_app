@@ -30,23 +30,25 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });
   next();
 });
 
 // register endpoint
-app.post("/register", (request, response) => {
+
+app.post("/user/register", (request, response) => {
   // hash the password
   bcrypt
     .hash(request.body.password, 10)
     .then((hashedPassword) => {
       // create a new user instance and collect the data
       const user = new User({
+        username: request.body.username,
         email: request.body.email,
         password: hashedPassword,
       });
-
       // save the new user
       user
         .save()
@@ -57,7 +59,7 @@ app.post("/register", (request, response) => {
             result,
           });
         })
-        // catch erroe if the new user wasn't added successfully to the database
+        //error if the new user wasn't added successfully to the database
         .catch((error) => {
           response.status(500).send({
             message: "Error creating user",
@@ -75,7 +77,7 @@ app.post("/register", (request, response) => {
 });
 
 // login endpoint
-app.post("/login", (request, response) => {
+app.post("/user/login", (request, response) => {
   // check if email exists
   User.findOne({ email: request.body.email })
 
@@ -91,7 +93,7 @@ app.post("/login", (request, response) => {
           // check if password matches
           if(!passwordCheck) {
             return response.status(400).send({
-              message: "Passwords does not match",
+              message: "Passwords do not match",
               error,
             });
           }
@@ -136,7 +138,7 @@ app.get("/free-endpoint", (request, response) => {
 });
 
 // authentication endpoint
-app.get("/auth-endpoint", auth, (request, response) => {
+app.get("/user", auth, (request, response) => {
   response.send({ message: "You are authorized to access me" });
 });
 
