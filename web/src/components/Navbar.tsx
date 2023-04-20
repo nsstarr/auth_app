@@ -19,7 +19,7 @@ function Navbar({}: NavbarProps) {
             <img src={LOGO} alt="logo" className="w-44" />
           </NavLink>
         </figure>
-        <li className="cursor-pointer tracking-wide hover:underline">
+        <li className="cursor-pointer tracking-wide hover:bg-grey rounded-md p-2">
           <NavLink
             to="/catgories"
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -28,7 +28,7 @@ function Navbar({}: NavbarProps) {
             Categories
           </NavLink>
         </li>
-        <li className="cursor-pointer tracking-wide hover:underline">
+        <li className="cursor-pointer tracking-wide hover:bg-grey rounded-md p-2">
           <NavLink
             to="/brands"
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -38,7 +38,7 @@ function Navbar({}: NavbarProps) {
           </NavLink>
         </li>
       </div>
-      <form className="min-w-80 w-96 flex bg-grey justify-between border-solid rounded-md border-medium_grey hover:border-dark_grey border-[1px] p-3 invisible lg:visible">
+      <form className="min-w-80 w-96 flex bg-grey justify-between border-solid rounded-md border-medium_grey hover:border-dark_grey border-[1.5px] p-3 invisible lg:visible">
         <input
           type="text"
           placeholder="Enter a keyword, item, SKU or MPN"
@@ -51,7 +51,7 @@ function Navbar({}: NavbarProps) {
       </form>
 
       <div className="flex space-x-6 items-center">
-        <li className="cursor-pointer tracking-wide flex hover:underline">
+        <li className="cursor-pointer tracking-wide flex hover:underline hover:text-orange p-2">
           <NavLink
             to="/favouites"
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -60,7 +60,7 @@ function Navbar({}: NavbarProps) {
             Favourites
           </NavLink>
         </li>
-        <li className="cursor-pointer tracking-wide hover:underline flex">
+        <li className="cursor-pointer tracking-wide hover:underline hover:text-orange flex p-2">
           <NavLink
             to="/signup"
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -69,7 +69,7 @@ function Navbar({}: NavbarProps) {
             My Account
           </NavLink>
         </li>
-        <li className="cursor-pointertracking-wide flex hover:underline">
+        <li className="cursor-pointertracking-wide flex hover:underline hover:text-orange p-2">
           <NavLink
             to="/basket"
             className={({ isActive }) => (isActive ? 'underline' : '')}
