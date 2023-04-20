@@ -10,28 +10,28 @@ function LoginForm({}: SignUpFormProps) {
   const [password, setPassword] = useState('');
   const [register, setRegister] = useState(false);
 
-  //set axios configuration
-  const configuration = {
-    method: 'post',
-    url: `${import.meta.env.VITE_API_URL}user/register`,
-    data: {
-      username,
-      email,
-      password,
-    },
-  };
-  // make the API call
-  axios(configuration)
-    .then((result) => {
-      setRegister(true)
-    })
-    .catch((error) => {
-      error = new Error
-    });
-
   const handleSubmit = (e: React.FormEvent) => {
+    //set axios configuration
+    const configuration = {
+      method: 'post',
+      url: `${import.meta.env.VITE_API_URL}user/register`,
+      data: {
+        username,
+        email,
+        password,
+      },
+    };
+    // make the API call
+    axios(configuration)
+      .then((result) => {
+        console.log(result)
+        setRegister(true);
+      })
+      .catch((error) => {
+        console.log(error)
+        error = new Error();
+      });
     e.preventDefault();
-    alert('Submited');
   };
 
   return (
