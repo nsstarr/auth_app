@@ -1,6 +1,10 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+
+//initialize cookies
+const cookies = new Cookies();
 
 interface LoginFormProps {}
 
@@ -22,6 +26,12 @@ function LoginForm({}: LoginFormProps) {
       .then((result) => {
         console.log(result);
         setLogin(true);
+        // set the cookie
+        cookies.set('TOKEN', result.data.token, {
+          path: '/',
+        });
+        // redirect user to the auth page
+        window.location.href = '/auth';
       })
       .catch((error) => {
         console.log(error);
