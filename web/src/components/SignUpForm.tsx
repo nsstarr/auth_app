@@ -13,8 +13,9 @@ function LoginForm({}: SignUpFormProps) {
   //set axios configuration
   const configuration = {
     method: 'post',
-    url: import.meta.env.VITE_API_URL + 'user/register',
+    url: `${import.meta.env.VITE_API_URL}user/register`,
     data: {
+      username,
       email,
       password,
     },
@@ -22,10 +23,10 @@ function LoginForm({}: SignUpFormProps) {
   // make the API call
   axios(configuration)
     .then((result) => {
-      console.log(result);
+      setRegister(true)
     })
     .catch((error) => {
-      console.log(error);
+      error = new Error
     });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -70,11 +71,11 @@ function LoginForm({}: SignUpFormProps) {
             onChange={(e) => setPassword(e.target.value)}
             className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
           />
-          <input
+          {/* <input
             type="confirm password"
             placeholder="Confirm Password"
             className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
-          />
+          /> */}
           <small className="cursor-pointer text-orange font-bold text-right hover:underline"></small>
           <button
             onClick={(e) => handleSubmit(e)}
@@ -82,6 +83,11 @@ function LoginForm({}: SignUpFormProps) {
           >
             SIGN UP
           </button>
+          {register ? (
+            <small className="text-success font-semibold">You Are Registered Successfully</small>
+          ) : (
+            <small className="text-danger font-semibold">You Are Not Registered</small>
+          )}
         </div>
       </form>
     </section>
