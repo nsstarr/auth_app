@@ -1,18 +1,20 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+
+//imports of pages to match routes
+
 import Home from './pages/Home';
-import { useState } from 'react';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotFound/>} />
     </Routes>
   );
 }
