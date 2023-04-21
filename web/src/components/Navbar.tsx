@@ -12,7 +12,7 @@ interface NavbarProps {}
 
 function Navbar({}: NavbarProps) {
   return (
-    <nav className="flex m-auto text-sm font-medium justify-between list-none pb-8 text-dark_grey border-b-grey border-solid border-b-2">
+    <nav className="flex my-5 mx-5 text-sm font-medium justify-between list-none pb-8 text-dark_grey border-b-grey border-solid border-b-2">
       <div className="flex space-x-6 items-center">
         <figure className="text-4xl cursor-pointer px-5 hover:underline">
           <NavLink to="/">
