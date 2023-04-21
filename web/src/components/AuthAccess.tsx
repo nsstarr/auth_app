@@ -1,11 +1,12 @@
-export default function AuthComponent({
-  isAuthenticated,
-}: {
-  isAuthenticated?: boolean;
-}) {
+import Navbar from './Navbar';
+
+function AuthComponent() {
   return (
-    <div className="bg-orange">
-      <h1 className="text-center">Auth Component</h1>
-    </div>
+    <>
+      <Navbar/>
+        <h1 className="text-center mt-20">Welcome back!</h1>
+    </>
   );
 }
+
+export default AuthComponent;
