@@ -1,14 +1,16 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 //initialize cookies
 const cookies = new Cookies();
 
-interface LoginFormProps {}
+interface LoginFormProps {
+  setIsAuthenticated: (value: boolean) => void;
+}
 
-function LoginForm({}: LoginFormProps) {
+function LoginForm({ setIsAuthenticated }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState(false);
@@ -36,10 +38,13 @@ function LoginForm({}: LoginFormProps) {
       .catch((error) => {
         console.log(error);
       });
-
+    setIsAuthenticated(true);
     e.preventDefault();
   };
-
+  if (login) {
+    return <Navigate to="/auth" />;
+  }
+  
   return (
     <section className="flex flex-col mt-20 items-center justify-center">
       <div className="text-left w-96 ">

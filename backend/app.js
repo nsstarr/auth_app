@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
 // require database connection
@@ -12,12 +13,14 @@ const auth = require("./auth");
 // execute database connection
 dbConnect();
 
+app.use(cors());
+
 // handle CORS Error by adding a header here
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+    "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization",
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
