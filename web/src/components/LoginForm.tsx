@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Link, Navigate } from 'react-router-dom';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //initialize cookies
 const cookies = new Cookies();
@@ -14,6 +14,14 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState(false);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (login) {
+      setIsAuthenticated(true);
+      return () => {};
+    }
+  }, [login, setIsAuthenticated]);
 
   const handleSubmit = (e: React.FormEvent) => {
     const configuration = {
@@ -32,19 +40,18 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
         cookies.set('TOKEN', result.data.token, {
           path: '/',
         });
-        // redirect user to the auth page
-        window.location.href = '/auth';
       })
       .catch((error) => {
         console.log(error);
+        console.log(error);
+        setError('Incorrect email or password');
       });
-    setIsAuthenticated(true);
     e.preventDefault();
   };
   if (login) {
     return <Navigate to="/auth" />;
   }
-  
+
   return (
     <section className="flex flex-col mt-20 items-center justify-center">
       <div className="text-left w-96 ">
