@@ -25,8 +25,10 @@ function App() {
         path="/auth"
         element={
           <ProtectedRoute
+            path="/home"
             component={AuthAccess}
             isAuthenticated={isAuthenticated}
+            redirectTo="/auth"
           />
         }
       />
