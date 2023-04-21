@@ -1,13 +1,15 @@
-import LoginForm from "../components/LoginForm";
+import LoginForm, { LoginFormProps } from '../components/LoginForm';
 import Navbar from "../components/Navbar";
 
-interface LoginProps {}
+interface LoginProps extends LoginFormProps {
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+}
 
-function Login({}: LoginProps) {
+function Login({ setIsAuthenticated }: LoginProps) {
   return (
     <>
-    <Navbar/>
-    <LoginForm/>
+      <Navbar />
+      <LoginForm setIsAuthenticated={setIsAuthenticated} />
     </>
   );
 }

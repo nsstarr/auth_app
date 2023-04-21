@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 //initialize cookies
 const cookies = new Cookies();
 
-interface LoginFormProps {
+export interface LoginFormProps {
   setIsAuthenticated: (value: boolean) => void;
 }
 
