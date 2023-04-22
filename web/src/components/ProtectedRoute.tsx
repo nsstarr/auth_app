@@ -10,7 +10,7 @@ interface ProtectedRouteProps {
   location?: LocationDescriptorObject;
 }
 
-//added a redirectTo which will be used to redirect the user to the appropriate page if they are not authenticated.
+//add a redirectTo which will be used to redirect the user to the appropriate page if they are not authenticated.
 const ProtectedRoute = memo(
   ({
     component: Component,
