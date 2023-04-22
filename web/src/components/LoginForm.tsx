@@ -28,7 +28,8 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
     } else {
       setError(null);
     }
-    setEmail(target.value);
+    //make sure the email is in lowercase
+    setEmail(target.value.trim().toLowerCase());
   };
 
   useEffect(() => {
@@ -39,6 +40,10 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
   }, [login, setIsAuthenticated]);
 
   const handleSubmit = (e: React.FormEvent) => {
+    // prevent the page from reloading
+    e.preventDefault();
+
+    //axios configuration
     const configuration = {
       method: 'post',
       url: `${import.meta.env.VITE_API_URL}user/login`,
@@ -47,6 +52,7 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
         password,
       },
     };
+
     axios(configuration)
       .then((result) => {
         console.log(result);
@@ -60,7 +66,6 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
         console.log(error);
         setError('Incorrect email or password');
       });
-    e.preventDefault();
   };
   if (login) {
     return <Navigate to="/auth" />;
@@ -91,7 +96,9 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
             className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
             onChange={(e) => handleEmailChange(e)}
           />
-          {error && <small className="text-danger font-semibold">{error}</small>}
+          {error && (
+            <small className="text-danger font-semibold">{error}</small>
+          )}
           <input
             type="password"
             placeholder="Password"
@@ -118,7 +125,9 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
               You Are Not Logged in
             </h4>
           )}
-          {error && <small className="text-danger font-semibold">{error}</small>}
+          {error && (
+            <small className="text-danger font-semibold">{error}</small>
+          )}
         </div>
       </form>
     </section>
