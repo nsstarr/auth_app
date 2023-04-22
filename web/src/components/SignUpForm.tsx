@@ -18,6 +18,8 @@ function LoginForm({}: SignUpFormProps) {
       method: 'post',
       url: `${import.meta.env.VITE_API_URL}user/register`,
       data: {
+        firstName,
+        lastName,
         username,
         email,
         password,
@@ -41,7 +43,7 @@ if (register){
 }
 
   return (
-    <section className="flex flex-col mt-20 items-center justify-center">
+    <section className="flex flex-col mt-10 items-center justify-center">
       <div className="text-left w-96 ">
         <h2 className="text-3xl py-3 font-bold font-display tracking-wide">
           Register Online Account
