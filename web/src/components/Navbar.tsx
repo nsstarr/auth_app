@@ -13,22 +13,22 @@ interface NavbarProps {}
 function Navbar({}: NavbarProps) {
   return (
     <nav className="flex my-5 mx-5 text-sm font-medium justify-between list-none pb-8 text-dark_grey border-b-grey border-solid border-b-2">
-      <div className="flex space-x-6 items-center">
+      <div className="flex md:space-x-6 items-center">
         <figure className="text-4xl cursor-pointer px-5 hover:underline">
           <NavLink to="/">
-            <img src={LOGO} alt="logo" className="w-44" />
+            <img src={LOGO} alt="logo" className="w-44 invisible md:visible" />
           </NavLink>
         </figure>
         <li className="cursor-pointer tracking-wide hover:bg-grey rounded-md p-2">
           <NavLink
-            to="/catgories"
+            to="/categories"
             className={({ isActive }) => (isActive ? 'underline' : '')}
           >
             <Bars3Icon className="w-8 text-orange mx-auto" />
             Categories
           </NavLink>
         </li>
-        <li className="cursor-pointer tracking-wide hover:bg-grey rounded-md p-2">
+        <li className="invisible cursor-pointer tracking-wide hover:bg-grey rounded-md p-2 md:visible">
           <NavLink
             to="/brands"
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -50,8 +50,8 @@ function Navbar({}: NavbarProps) {
         </a>
       </form>
 
-      <div className="flex space-x-6 items-center">
-        <li className="cursor-pointer tracking-wide flex hover:underline hover:text-orange p-2">
+      <div className="flex md:space-x-6 items-center">
+        <li className="invisible cursor-pointer tracking-wide flex hover:underline hover:text-orange p-2 md:visible">
           <NavLink
             to="/favouites"
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -69,7 +69,7 @@ function Navbar({}: NavbarProps) {
             My Account
           </NavLink>
         </li>
-        <li className="cursor-pointertracking-wide flex hover:underline hover:text-orange p-2">
+        <li className="cursor-pointer tracking-wide flex hover:underline hover:text-orange p-2">
           <NavLink
             to="/basket"
             className={({ isActive }) => (isActive ? 'underline' : '')}
