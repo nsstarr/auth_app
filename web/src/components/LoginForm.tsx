@@ -14,7 +14,22 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null as string | null);
+
+  //check if the email is in the correct format
+  const isValidEmail = (email: string) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+  //check if the email is valid
+  const handleEmailChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    if (!isValidEmail(target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+    setEmail(target.value);
+  };
 
   useEffect(() => {
     if (login) {
@@ -74,8 +89,9 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
             name="email"
             value={email}
             className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handleEmailChange(e)}
           />
+          {error && <small className="text-danger font-semibold">{error}</small>}
           <input
             type="password"
             placeholder="Password"
@@ -94,14 +110,15 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
             LOGIN
           </button>
           {login ? (
-            <small className="text-success font-semibold">
+            <h4 className="text-success text-sm mx-auto font-semibold">
               You Are Logged in Successfully
-            </small>
+            </h4>
           ) : (
-            <small className="text-danger font-semibold">
+            <h4 className="text-danger text-sm mx-auto font-semibold">
               You Are Not Logged in
-            </small>
+            </h4>
           )}
+          {error && <small className="text-danger font-semibold">{error}</small>}
         </div>
       </form>
     </section>

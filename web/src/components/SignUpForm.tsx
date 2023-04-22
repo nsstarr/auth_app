@@ -11,8 +11,46 @@ function LoginForm({}: SignUpFormProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [register, setRegister] = useState(false);
+  const [error, setError] = useState(null as string | null);
 
+  //check if the email is in the correct format
+  const isValidEmail = (email: string) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+  //check if the email is valid
+  const handleEmailChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    if (!isValidEmail(target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+    setEmail(target.value);
+  };
+
+  //handle the submit
   const handleSubmit = (e: React.FormEvent) => {
+    // prevent the page from reloading
+    e.preventDefault();
+
+    // check if the key input values are empty
+    let hasError = false;
+
+    if (username.trim().length === 0) {
+      setError('Username field is empty');
+      hasError = true;
+    }
+    if (email.trim().length === 0) {
+      setError('Email field is empty');
+      hasError = true;
+    }
+    if (password.trim().length === 0) {
+      setError('Password field is empty');
+      hasError = true;
+    }
+    if (hasError) {
+      return;
+    }
     //set axios configuration
     const configuration = {
       method: 'post',
@@ -28,19 +66,18 @@ function LoginForm({}: SignUpFormProps) {
     // make the API call
     axios(configuration)
       .then((result) => {
-        console.log(result)
+        console.log(result);
         setRegister(true);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         error = new Error();
       });
-    e.preventDefault();
   };
   // if the user is registered, redirect to login page
-if (register){
-  return <Navigate to="/login" />;
-}
+  if (register) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <section className="flex flex-col mt-10 items-center justify-center">
@@ -83,7 +120,7 @@ if (register){
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handleEmailChange(e)}
             className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
           />
           <input
@@ -94,6 +131,9 @@ if (register){
             className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
           />
           <small className="cursor-pointer text-orange font-bold text-right hover:underline"></small>
+          {error && (
+            <small className="text-danger pb-2 font-semibold">{error}</small>
+          )}
           <button
             onClick={(e) => handleSubmit(e)}
             className="bg-orange tracking-wider p-4 font-bold bg-blue-500 rounded-md text-white hover:bg-dark_orange active:bg-dark_orange"
@@ -101,9 +141,13 @@ if (register){
             SIGN UP
           </button>
           {register ? (
-            <small className="text-success font-semibold">You Are Registered Successfully</small>
+            <h4 className="text-success font-semibold text-sm mx-auto">
+              You Are Registered Successfully
+            </h4>
           ) : (
-            <small className="text-danger font-semibold">You Are Not Registered</small>
+            <h4 className="text-danger font-semibold text-sm mx-auto">
+              You Are Not Registered
+            </h4>
           )}
         </div>
       </form>
