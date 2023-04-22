@@ -6,6 +6,8 @@ interface SignUpFormProps {}
 
 function LoginForm({}: SignUpFormProps) {
   const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [register, setRegister] = useState(false);
@@ -55,6 +57,20 @@ if (register){
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="flex flex-col w-96 py-4 space-y-4 rounded-md ">
           <input
+            type="first name"
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
+          />
+          <input
+            type="last name"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
+          />
+          <input
             type="username"
             placeholder="Username"
             value={username}
@@ -75,11 +91,6 @@ if (register){
             onChange={(e) => setPassword(e.target.value)}
             className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
           />
-          {/* <input
-            type="confirm password"
-            placeholder="Confirm Password"
-            className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
-          /> */}
           <small className="cursor-pointer text-orange font-bold text-right hover:underline"></small>
           <button
             onClick={(e) => handleSubmit(e)}
