@@ -42,40 +42,57 @@ app.get("/", (request, response, next) => {
 // register endpoint
 
 app.post("/user/register", (request, response) => {
-  // hash the password
-  bcrypt
-    .hash(request.body.password, 10)
-    .then((hashedPassword) => {
-      // create a new user instance and collect the data
-      const user = new User({
-        firstName: request.body.firstName,
-        lastName: request.body.lastName,
-        username: request.body.username,
-        email: request.body.email,
-        password: hashedPassword,
-      });
-      // save the new user
-      user
-        .save()
-        // return success if the new user is added to the database successfully
-        .then((result) => {
-          response.status(201).send({
-            message: "User Created Successfully",
-            result,
-          });
-        })
-        //error if the new user wasn't added successfully to the database
-        .catch((error) => {
-          response.status(500).send({
-            message: "Error creating user",
-            error,
-          });
+  // Check if username and email already exist
+  User.findOne({ $or: [{ username: request.body.username }, { email: request.body.email }] })
+    .then((user) => {
+      if (user) {
+        // If a user with the same username or email already exists, return an error
+        return response.status(400).send({
+          message: "User already exists",
         });
+      } else {
+        // hash the password
+        bcrypt
+          .hash(request.body.password, 10)
+          .then((hashedPassword) => {
+            // create a new user instance and collect the data
+            const user = new User({
+              firstName: request.body.firstName,
+              lastName: request.body.lastName,
+              username: request.body.username,
+              email: request.body.email,
+              password: hashedPassword,
+            });
+            // save the new user
+            user
+              .save()
+              // return success if the new user is added to the database successfully
+              .then((result) => {
+                response.status(201).send({
+                  message: "User Created Successfully",
+                  result,
+                });
+              })
+              //error if the new user wasn't added successfully to the database
+              .catch((error) => {
+                response.status(500).send({
+                  message: "Error creating user",
+                  error,
+                });
+              });
+          })
+          // catch error if the password hash isn't successful
+          .catch((e) => {
+            response.status(500).send({
+              message: "Password was not hashed successfully",
+              e,
+            });
+          });
+      }
     })
-    // catch error if the password hash isn't successful
     .catch((e) => {
       response.status(500).send({
-        message: "Password was not hashed successfully",
+        message: "Error finding user",
         e,
       });
     });
@@ -85,7 +102,6 @@ app.post("/user/register", (request, response) => {
 app.post("/user/login", (request, response) => {
   // check if email exists
   User.findOne({ email: request.body.email })
-
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
