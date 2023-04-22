@@ -4,7 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 
 interface SignUpFormProps {}
 
-function LoginForm({}: SignUpFormProps) {
+function SignUpForm({}: SignUpFormProps) {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -155,4 +155,4 @@ function LoginForm({}: SignUpFormProps) {
   );
 }
 
-export default LoginForm;
+export default SignUpForm;

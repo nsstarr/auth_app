@@ -9,18 +9,21 @@ function Home({}: HomeProps) {
       <Navbar />
       <section className="flex flex-col space-y-8 mx-60 mt-20">
         <img src={CROMWELL} alt="cromwell" className="w-full" />
-        <h1 className='text-orange font-display text-2xl font-bold'> We keep industry working</h1>
-        <p>
+        <h1 className="text-orange font-display text-2xl font-bold">
+          {' '}
+          We keep industry working
+        </h1>
+        <p data-testid="paragraph-1">
           Cromwell has grown from humble beginnings over 50 years ago to become
           a trusted source of MRO supplies and industrial products.
         </p>
-        <p>
+        <p data-testid="paragraph-2">
           With a network of branches and offices in the UK and across the
           globe,we help keep the vital cogs of industry turning. Supporting
           those who make and manufacture the world around us. Going above and
           beyond to keep operations running and people safe.
         </p>
-        <p>
+        <p data-testid="paragraph-3">
           We do this by not only providing easy access to an extensive range of
           great value, high-quality products, but also through exceptional
           customer service and a wealth of technical expertise to help you get
