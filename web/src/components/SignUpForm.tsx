@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 interface SignUpFormProps {}
 
@@ -33,6 +33,10 @@ function LoginForm({}: SignUpFormProps) {
       });
     e.preventDefault();
   };
+  // if the user is registered, redirect to login page
+if (register){
+  return <Navigate to="/login" />;
+}
 
   return (
     <section className="flex flex-col mt-20 items-center justify-center">

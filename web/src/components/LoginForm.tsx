@@ -43,7 +43,6 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
       })
       .catch((error) => {
         console.log(error);
-        console.log(error);
         setError('Incorrect email or password');
       });
     e.preventDefault();
