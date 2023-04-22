@@ -67,8 +67,8 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
   }
 
   return (
-    <section className="flex flex-col mt-20 items-center justify-center">
-      <div className="text-left w-96 ">
+    <section className="flex flex-col mt-20 items-center justify-center content-center md:ml-0">
+      <div className="text-center lg:text-left w-96 ">
         <h2 className="text-3xl py-3 font-bold font-display tracking-wide">
           Login
         </h2>
@@ -104,7 +104,7 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
             <a>Forgot password?</a>
           </small>
           <button
-            className="bg-orange tracking-wider p-4 font-bold bg-blue-500 rounded-md text-white hover:bg-dark_orange active:bg-dark_orange"
+            className="bg-orange tracking-wider w-60 mx-auto p-4 font-bold bg-blue-500 rounded-md text-white hover:bg-dark_orange active:bg-dark_orange lg:w-full"
             onClick={(e) => handleSubmit(e)}
           >
             LOGIN
