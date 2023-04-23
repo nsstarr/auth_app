@@ -43,7 +43,7 @@ app.get("/", (request, response, next) => {
 
 app.post("/user/register", (request, response) => {
   // Check if username and email already exist
-  User.findOne({ $or: [{ username: request.body.username }, { email: request.body.email }] })
+  User.findOne({ $or: [{ username: request.body.username.trim().toLowercase() }, { email: request.body.email.trim().toLowerCase() }] })
     .then((user) => {
       if (user) {
         // If a user with the same username or email already exists, return an error
