@@ -63,7 +63,6 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
 
     axios(configuration)
       .then((result) => {
-        console.log(result);
         setLogin(true);
         // set the cookie
         cookies.set('TOKEN', result.data.token, {
@@ -71,10 +70,8 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
         });
         // dispatch the setUser action with the user data
         dispatch(setUser(result.data));
-        console.log(result.data)
       })
       .catch((error) => {
-        console.log(error);
         setError('Incorrect email or password');
       });
   };

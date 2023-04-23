@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface SignUpFormProps {}
 
@@ -84,7 +84,6 @@ function SignUpForm({}: SignUpFormProps) {
     // make the API call
     axios(configuration)
       .then((result) => {
-        console.log(result);
         setRegister(true);
       })
       .catch((error) => {

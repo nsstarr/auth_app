@@ -1,8 +1,7 @@
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-interface NotFoundProps {
 
-}
+interface NotFoundProps {}
 
 function NotFound({}: NotFoundProps) {
         return (

@@ -10,7 +10,6 @@ function Home({}: HomeProps) {
       <section className="flex flex-col space-y-8 mx-60 mt-20">
         <img src={CROMWELL} alt="cromwell" className="w-full" />
         <h1 className="text-orange font-display text-2xl font-bold">
-          {' '}
           We keep industry working
         </h1>
         <p data-testid="paragraph-1">
