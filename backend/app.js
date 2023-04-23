@@ -101,7 +101,7 @@ app.post("/user/register", (request, response) => {
 // login endpoint
 app.post("/user/login", (request, response) => {
   // check if email exists
-  User.findOne({ email: request.body.email })
+  User.findOne({ email: request.body.email.trim().toLowerCase() })
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
