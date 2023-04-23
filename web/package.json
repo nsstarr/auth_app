@@ -13,6 +13,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.17",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/axios": "^0.14.0",
     "@types/jest": "^29.5.1",
     "@types/react-redux": "^7.1.25",
     "@types/react-router-dom": "^5.3.3",
