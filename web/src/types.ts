@@ -5,5 +5,7 @@ export interface User {
 }
 
 export interface RootState {
-  user: User | null;
+  user: {
+    user: User | null;
+  };
 }

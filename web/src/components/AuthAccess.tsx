@@ -3,13 +3,13 @@ import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
 
 function AuthComponent() {
-  const user = useSelector((state: RootState) => state?.user);
+   const user = useSelector((state : RootState ) => state.user?.user);
   console.log(user)
   return (
     <>
       <Navbar />
       {user && (
-        <h1 className="text-center mt-20">Welcome back, {user.name}!</h1>
+        <h1 className="text-center mt-20">Welcome back, {user.email}!</h1>
       )}
     </>
   );

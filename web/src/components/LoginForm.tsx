@@ -70,8 +70,8 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
           path: '/',
         });
         // dispatch the setUser action with the user data
-        dispatch(setUser(result.data.user));
-        console.log(result.data.user)
+        dispatch(setUser(result.data));
+        console.log(result.data)
       })
       .catch((error) => {
         console.log(error);
