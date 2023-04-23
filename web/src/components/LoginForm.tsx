@@ -3,6 +3,11 @@ import Cookies from 'universal-cookie';
 import { Link, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+//Redux imports
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/userSlice';
+
+
 //initialize cookies
 const cookies = new Cookies();
 
@@ -15,6 +20,9 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState(false);
   const [error, setError] = useState(null as string | null);
+  
+  //initialize dispatch
+  const dispatch = useDispatch();
 
   //check if the email is in the correct format
   const isValidEmail = (email: string) => {
@@ -61,6 +69,9 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
         cookies.set('TOKEN', result.data.token, {
           path: '/',
         });
+        // dispatch the setUser action with the user data
+        dispatch(setUser(result.data));
+        console.log(result.data)
       })
       .catch((error) => {
         console.log(error);
