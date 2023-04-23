@@ -10,6 +10,7 @@ function SignUpForm({}: SignUpFormProps) {
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [register, setRegister] = useState(false);
   const [error, setError] = useState(null as string | null);
 
@@ -26,6 +27,17 @@ function SignUpForm({}: SignUpFormProps) {
       setError(null);
     }
     setEmail(target.value);
+  };
+
+  //password change handlers
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setConfirmPassword(event.target.value);
   };
 
   //handle the submit
@@ -51,6 +63,12 @@ function SignUpForm({}: SignUpFormProps) {
     if (hasError) {
       return;
     }
+    // check if the password and confirm password are the same
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    
     //set axios configuration
     const configuration = {
       method: 'post',
@@ -95,21 +113,21 @@ function SignUpForm({}: SignUpFormProps) {
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="flex flex-col w-96 py-4 space-y-4 rounded-md ">
-          <div className='flex flex-row space-x-2'>
-          <input
-            type="first name"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
-          />
-          <input
-            type="last name"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
-          />
+          <div className="flex flex-row space-x-2">
+            <input
+              type="first name"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
+            />
+            <input
+              type="last name"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
+            />
           </div>
           <input
             type="username"
@@ -129,14 +147,14 @@ function SignUpForm({}: SignUpFormProps) {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
           />
           <input
             type="password"
             placeholder="Confirm Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
             className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
           />
           <small className="cursor-pointer text-orange font-bold text-right hover:underline"></small>
