@@ -88,8 +88,11 @@ function SignUpForm({}: SignUpFormProps) {
         setRegister(true);
       })
       .catch((error) => {
-        console.log(error);
-        error = new Error();
+       if (error.response.status === 400) {
+         setError('User already exists');
+       } else {
+          setError('Something went wrong');git
+       }
       });
   };
   // if the user is registered, redirect to login page
