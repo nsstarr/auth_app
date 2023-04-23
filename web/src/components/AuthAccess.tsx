@@ -9,7 +9,7 @@ function AuthComponent() {
     <>
       <Navbar />
       {user && (
-        <h1 className="text-center mt-20">Welcome back, {user.email}!</h1>
+        <h1 className="text-center mt-20">Welcome back to Cromwell, {user.email}!</h1>
       )}
     </>
   );

@@ -91,14 +91,10 @@ function SignUpForm({}: SignUpFormProps) {
        if (error.response.status === 400) {
          setError('User already exists');
        } else {
-          setError('Something went wrong');git
+          setError('Something went wrong');
        }
       });
   };
-  // if the user is registered, redirect to login page
-  if (register) {
-    return <Navigate to="/login" />;
-  }
 
   return (
     <section className="flex flex-col mt-10 items-center justify-center">
@@ -172,7 +168,7 @@ function SignUpForm({}: SignUpFormProps) {
           </button>
           {register ? (
             <h4 className="text-success font-semibold text-sm mx-auto">
-              You Are Registered Successfully
+              You Are Registered Successfully. Go to <Link to="/login" className='underline'>Login Page</Link>
             </h4>
           ) : (
             <h4 className="text-danger font-semibold text-sm mx-auto">

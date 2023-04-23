@@ -1,17 +1,16 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import LoginForm from '../components/LoginForm';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from '../store';
 
 test('displays "You Are Not Logged in" when user is not logged in', () => {
   render(
-    <MemoryRouter>
-      <LoginForm setIsAuthenticated={() => {}} />
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter>
+        <LoginForm setIsAuthenticated={() => {}} />
+      </MemoryRouter>
+    </Provider>
   );
 
   const notLoggedInText = screen.getByText(/You Are Not Logged in/i);
@@ -20,9 +19,11 @@ test('displays "You Are Not Logged in" when user is not logged in', () => {
 
 test('displays error message when incorrect email or password is entered', async () => {
   render(
-    <MemoryRouter>
-      <LoginForm setIsAuthenticated={() => {}} />
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter>
+        <LoginForm setIsAuthenticated={() => {}} />
+      </MemoryRouter>
+    </Provider>
   );
 
   // enter incorrect email and password
@@ -43,4 +44,13 @@ test('displays error message when incorrect email or password is entered', async
     });
     expect(errorElement).toBeInTheDocument();
   });
+    test('renders password input', () => {
+      const passwordInput = screen.getByPlaceholderText(/password/i);
+      expect(passwordInput).toBeInTheDocument();
+    });
+
+    test('renders login button', () => {
+      const loginButton = screen.getByRole('button', { name: /login/i });
+      expect(loginButton).toBeInTheDocument();
+    });
 });
