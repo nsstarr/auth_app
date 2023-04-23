@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
-import LoginForm from './components/LoginForm';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
-import FreeAccess from './components/FreeAccess';
 import AuthAccess from './components/AuthAccess';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -20,7 +18,6 @@ function App() {
         path="/login"
         element={<Login setIsAuthenticated={setIsAuthenticated} />}
       />
-      <Route path="/free" element={<FreeAccess />} />
       <Route
         path="/auth"
         element={
