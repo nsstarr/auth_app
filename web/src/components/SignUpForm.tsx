@@ -63,6 +63,7 @@ function SignUpForm({}: SignUpFormProps) {
     if (hasError) {
       return;
     }
+
     // check if the password and confirm password are the same
     if (password !== confirmPassword) {
       setError('Passwords do not match');
