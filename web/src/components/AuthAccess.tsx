@@ -2,9 +2,8 @@ import { RootState } from '../types';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
 
-const user = useSelector((state: RootState) => state.user);
-
 function AuthComponent() {
+  const user = useSelector((state: RootState) => state.user);
   return (
     <>
       <Navbar />

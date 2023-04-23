@@ -7,8 +7,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/userSlice';
 
-//initialize dispatch
-const dispatch = useDispatch();
 
 //initialize cookies
 const cookies = new Cookies();
@@ -22,6 +20,9 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState(false);
   const [error, setError] = useState(null as string | null);
+  
+  //initialize dispatch
+  const dispatch = useDispatch();
 
   //check if the email is in the correct format
   const isValidEmail = (email: string) => {
@@ -70,6 +71,7 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
         });
         // dispatch the setUser action with the user data
         dispatch(setUser(result.data.user));
+        console.log(result.data.user)
       })
       .catch((error) => {
         console.log(error);
