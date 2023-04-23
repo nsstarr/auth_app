@@ -3,6 +3,13 @@ import Cookies from 'universal-cookie';
 import { Link, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+//Redux imports
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/userSlice';
+
+//initialize dispatch
+const dispatch = useDispatch();
+
 //initialize cookies
 const cookies = new Cookies();
 
@@ -61,6 +68,8 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
         cookies.set('TOKEN', result.data.token, {
           path: '/',
         });
+        // dispatch the setUser action with the user data
+        dispatch(setUser(result.data.user));
       })
       .catch((error) => {
         console.log(error);
