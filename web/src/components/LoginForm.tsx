@@ -107,9 +107,6 @@ function LoginForm({ setIsAuthenticated }: LoginFormProps) {
             className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
             onChange={(e) => handleEmailChange(e)}
           />
-          {error && (
-            <small className="text-danger font-semibold">{error}</small>
-          )}
           <input
             type="password"
             placeholder="Password"

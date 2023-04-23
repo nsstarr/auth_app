@@ -95,6 +95,7 @@ function SignUpForm({}: SignUpFormProps) {
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="flex flex-col w-96 py-4 space-y-4 rounded-md ">
+          <div className='flex flex-row space-x-2'>
           <input
             type="first name"
             placeholder="First Name"
@@ -109,6 +110,7 @@ function SignUpForm({}: SignUpFormProps) {
             onChange={(e) => setLastName(e.target.value)}
             className="p-2 border border-medium_grey rounded-md hover:border-dark_grey"
           />
+          </div>
           <input
             type="username"
             placeholder="Username"
@@ -126,6 +128,13 @@ function SignUpForm({}: SignUpFormProps) {
           <input
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="p-2 border  border-medium_grey rounded-md hover:border-dark_grey"
