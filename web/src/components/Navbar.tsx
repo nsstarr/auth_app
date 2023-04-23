@@ -62,7 +62,7 @@ function Navbar({}: NavbarProps) {
         </li>
         <li className="cursor-pointer tracking-wide hover:underline hover:text-orange flex p-2">
           <NavLink
-            to="/signup"
+            to="/login"
             className={({ isActive }) => (isActive ? 'underline' : '')}
           >
             <UserIcon className="w-8 mx-auto text-orange " />
