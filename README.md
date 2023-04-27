@@ -104,3 +104,7 @@ It's worth mentioning that after the user logs in or signs up, their user state 
 ## Optimisation and Perfomance
 
 Currently, user sign up and login processes can take a few seconds. While this is within acceptable limits for smaller applications, it may be an issue as the application scales.
+
+## License
+
+The Horoscope App is licensed under the MIT License. You are free to use, modify, and distribute the app as you see fit, as long as you include the original license and attribution to the original authors.
